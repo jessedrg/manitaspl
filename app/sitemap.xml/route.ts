@@ -16,9 +16,11 @@ export async function GET() {
     }
   }
 
+  const today = new Date().toISOString().split("T")[0]
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemaps.map((url) => `  <sitemap><loc>${url}</loc></sitemap>`).join("\n")}
+${sitemaps.map((url) => `  <sitemap>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n  </sitemap>`).join("\n")}
 </sitemapindex>`
 
   return new Response(xml, {
