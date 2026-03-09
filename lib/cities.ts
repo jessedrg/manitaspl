@@ -115,5 +115,5 @@ export function getProvinceName(slug: string): string {
     pamplona: "Navarra", logrono: "La Rioja", toledo: "Toledo",
     albacete: "Albacete", badajoz: "Badajoz", caceres: "Caceres",
   }
-  return provinceMap[slug] || "Espana"
+  return provinceMap[slug] || "España"
 }

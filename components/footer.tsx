@@ -15,7 +15,7 @@ export function Footer() {
               <span className="text-xl font-bold text-white">{SITE_NAME}</span>
             </div>
             <p className="text-sm text-gray-400">
-              Profesionales certificados para tu hogar. Servicio garantizado en toda Espana.
+              Profesionales certificados para tu hogar. Servicio garantizado en toda España.
             </p>
           </div>
 

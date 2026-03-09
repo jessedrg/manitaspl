@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const profession = PROFESSIONS.find((p) => p.id === professionId)
   if (!profession) return {}
 
-  const title = `${profession.name} en toda Espana | Profesionales Certificados | ${SITE_NAME}`
+  const title = `${profession.name} en toda España | Profesionales Certificados | ${SITE_NAME}`
   const description = `${profession.description} Cobertura en mas de 400 ciudades. Presupuesto sin compromiso. Llama al ${PHONE_DISPLAY}.`
 
   return {
@@ -126,7 +126,7 @@ export default async function ProfessionPage({ params }: PageProps) {
             <span className="text-white">{profession.name}</span>
           </nav>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 text-balance">
-            {profession.name} en toda Espana
+            {profession.name} en toda España
           </h1>
           {content && (
             <p className="text-lg text-green-100 mb-8 max-w-3xl leading-relaxed">
@@ -393,7 +393,7 @@ export default async function ProfessionPage({ params }: PageProps) {
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Necesitas un {profession.name.toLowerCase()}?
           </h2>
-          <p className="text-green-100 mb-6">Llamanos sin compromiso. Presupuesto gratuito y servicio garantizado en toda Espana.</p>
+          <p className="text-green-100 mb-6">Llamanos sin compromiso. Presupuesto gratuito y servicio garantizado en toda España.</p>
           <a
             href={`tel:${PHONE}`}
             className="inline-block gradient-cta text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg"

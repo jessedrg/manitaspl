@@ -28,7 +28,7 @@ export default function HomePage() {
             Profesionales certificados<br className="hidden sm:block" /> en tu zona
           </h1>
           <p className="text-lg sm:text-xl text-green-100 max-w-2xl mx-auto mb-8">
-            Electricistas, fontaneros, cerrajeros, desatascos y calderas. Servicio garantizado con profesionales verificados en toda Espana.
+            Electricistas, fontaneros, cerrajeros, desatascos y calderas. Servicio garantizado con profesionales verificados en toda España.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
