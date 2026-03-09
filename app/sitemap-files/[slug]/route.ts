@@ -7,7 +7,8 @@ export const runtime = "nodejs"
 const BASE_URL = "https://www.manitaspl.com"
 
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+  const rawSlug = (await params).slug
+  const slug = rawSlug.replace(/\.xml$/, "")
 
   const urls: { loc: string; priority: string }[] = []
 

@@ -8,13 +8,13 @@ export async function GET() {
   sitemaps.push(`${BASE_URL}/sitemap.xml`)
 
   for (const prof of VALID_PROFESSIONS) {
-    sitemaps.push(`${BASE_URL}/sitemap-files/${prof}`)
+    sitemaps.push(`${BASE_URL}/sitemap-files/${prof}.xml`)
     for (const mod of KNOWN_MODIFIERS) {
-      sitemaps.push(`${BASE_URL}/sitemap-files/${prof}-${mod}`)
+      sitemaps.push(`${BASE_URL}/sitemap-files/${prof}-${mod}.xml`)
     }
     const problems = PROBLEMS[prof] || []
     for (const problem of problems) {
-      sitemaps.push(`${BASE_URL}/sitemap-files/${problem}-${prof}`)
+      sitemaps.push(`${BASE_URL}/sitemap-files/${problem}-${prof}.xml`)
     }
   }
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { PROFESSIONS, VALID_PROFESSIONS, PROBLEMS } from "@/lib/professions"
 import { CITIES, getCityName } from "@/lib/cities"
 import { BASE_URL, PHONE, PHONE_DISPLAY, SITE_NAME } from "@/lib/constants"
+import { PROFESSION_CONTENT } from "@/lib/profession-content"
 
 interface PageProps {
   params: Promise<{ profession: string }>
@@ -53,8 +54,8 @@ export default async function ProfessionPage({ params }: PageProps) {
 
   const profession = PROFESSIONS.find((p) => p.id === professionId)!
   const problems = PROBLEMS[professionId] || []
+  const content = PROFESSION_CONTENT[professionId]
 
-  // Group cities by region
   const regions: Record<string, string[]> = {
     "Cataluna": CITIES.filter((c) => ["barcelona", "hospitalet-llobregat", "badalona", "terrassa", "sabadell", "mataro", "santa-coloma-gramenet", "cornella-llobregat", "sant-boi-llobregat", "rubi", "manresa", "vilanova-geltru", "viladecans", "castelldefels", "el-prat-llobregat", "granollers", "cerdanyola-valles", "mollet-valles", "gava", "esplugues-llobregat", "sant-cugat-valles", "sant-feliu-llobregat", "vic", "igualada", "sitges", "girona", "figueres", "olot", "salt", "palafrugell", "roses", "palamos", "tarragona", "reus", "cambrils", "salou", "lleida", "balaguer"].includes(c)),
     "Madrid": CITIES.filter((c) => ["madrid", "mostoles", "alcala-henares", "fuenlabrada", "leganes", "getafe", "alcorcon", "torrejon-ardoz", "parla", "alcobendas", "las-rozas", "pozuelo-alarcon", "coslada", "rivas-vaciamadrid", "majadahonda", "tres-cantos", "san-sebastian-reyes", "aranjuez", "collado-villalba"].includes(c)),
@@ -78,19 +79,21 @@ export default async function ProfessionPage({ params }: PageProps) {
   return (
     <main>
       {/* Hero */}
-      <section className="gradient-hero text-white py-16 lg:py-20">
+      <section className="gradient-hero text-white py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="text-sm text-green-200 mb-6">
             <Link href="/" className="hover:text-white">Inicio</Link>
             <span className="mx-2">/</span>
             <span className="text-white">{profession.name}</span>
           </nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 text-balance">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 text-balance">
             {profession.name} en toda Espana
           </h1>
-          <p className="text-lg text-green-100 mb-8 max-w-2xl">
-            {profession.description} Cobertura en mas de 400 ciudades y pueblos. Profesionales certificados con garantia por escrito.
-          </p>
+          {content && (
+            <p className="text-lg text-green-100 mb-8 max-w-3xl leading-relaxed">
+              {content.heroSubtitle}
+            </p>
+          )}
           <a
             href={`tel:${PHONE}`}
             className="inline-flex items-center gap-2 gradient-cta text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-shadow"
@@ -103,10 +106,124 @@ export default async function ProfessionPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* What we do */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Que hacemos</h2>
+            <p className="text-gray-600 leading-relaxed text-base">{content.whatWeDo}</p>
+          </div>
+        </section>
+      )}
+
+      {/* Services we offer */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Servicios que ofrecemos</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {content.services.map((svc) => (
+                <div key={svc.title} className="bg-white p-6 rounded-2xl border border-gray-200">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{svc.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{svc.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* How we work */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Como trabajamos</h2>
+            <div className="space-y-6">
+              {content.howWeWork.map((step, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    {i + 1}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed pt-2">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Why choose us */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-brand-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Por que elegirnos</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {content.whyUs.map((item) => (
+                <div key={item.title} className="bg-white p-6 rounded-2xl shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-brand-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Pricing */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Precios orientativos</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-3 pr-4 text-sm font-bold text-gray-900">Servicio</th>
+                    <th className="text-right py-3 pl-4 text-sm font-bold text-gray-900">Precio estimado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {content.pricing.map((row) => (
+                    <tr key={row.service} className="border-b border-gray-100">
+                      <td className="py-3 pr-4 text-sm text-gray-700">{row.service}</td>
+                      <td className="py-3 pl-4 text-sm text-brand-700 font-semibold text-right">{row.range}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-500 mt-4 leading-relaxed">{content.pricingNote}</p>
+          </div>
+        </section>
+      )}
+
+      {/* CTA mid-page */}
+      <section className="py-10 gradient-hero text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold mb-3">
+            Necesitas un {profession.name.toLowerCase()}? Llamanos ahora
+          </h2>
+          <p className="text-green-100 mb-5">Presupuesto sin compromiso. Profesionales en tu zona.</p>
+          <a
+            href={`tel:${PHONE}`}
+            className="inline-block gradient-cta text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg"
+          >
+            {PHONE_DISPLAY}
+          </a>
+        </div>
+      </section>
+
       {/* Main cities quick links */}
       <section className="py-12 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Ciudades principales</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{profession.name} en las principales ciudades</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {MAIN_CITIES.filter((c) => CITIES.includes(c)).map((city) => (
               <Link
@@ -125,7 +242,7 @@ export default async function ProfessionPage({ params }: PageProps) {
       {problems.length > 0 && (
         <section className="py-12 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Problemas que resolvemos</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Problemas que resolvemos</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {problems.map((problem) => (
                 <Link
@@ -141,10 +258,27 @@ export default async function ProfessionPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* FAQ */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Preguntas frecuentes</h2>
+            <div className="space-y-6">
+              {content.faq.map((item, i) => (
+                <div key={i} className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{item.q}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Cities by region */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">{profession.name} por comunidad autonoma</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">{profession.name} por comunidad autonoma</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(regions).map(([region, cities]) => (
               cities.length > 0 && (
@@ -169,7 +303,7 @@ export default async function ProfessionPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA bottom */}
       <section className="py-12 gradient-hero text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">
