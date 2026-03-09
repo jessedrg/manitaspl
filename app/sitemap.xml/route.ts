@@ -5,8 +5,6 @@ const BASE_URL = "https://www.manitaspl.com"
 export async function GET() {
   const sitemaps: string[] = []
 
-  sitemaps.push(`${BASE_URL}/sitemap.xml`)
-
   for (const prof of VALID_PROFESSIONS) {
     sitemaps.push(`${BASE_URL}/sitemap-files/${prof}.xml`)
     for (const mod of KNOWN_MODIFIERS) {
