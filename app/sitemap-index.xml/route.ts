@@ -1,0 +1,32 @@
+import { VALID_PROFESSIONS, KNOWN_MODIFIERS, PROBLEMS } from "@/lib/professions"
+
+const BASE_URL = "https://www.manitaspl.com"
+
+export async function GET() {
+  const sitemaps: string[] = []
+
+  sitemaps.push(`${BASE_URL}/sitemap.xml`)
+
+  for (const prof of VALID_PROFESSIONS) {
+    sitemaps.push(`${BASE_URL}/sitemap-files/${prof}`)
+    for (const mod of KNOWN_MODIFIERS) {
+      sitemaps.push(`${BASE_URL}/sitemap-files/${prof}-${mod}`)
+    }
+    const problems = PROBLEMS[prof] || []
+    for (const problem of problems) {
+      sitemaps.push(`${BASE_URL}/sitemap-files/${problem}-${prof}`)
+    }
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemaps.map((url) => `  <sitemap><loc>${url}</loc></sitemap>`).join("\n")}
+</sitemapindex>`
+
+  return new Response(xml, {
+    headers: {
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+    },
+  })
+}
