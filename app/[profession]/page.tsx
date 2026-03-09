@@ -76,8 +76,47 @@ export default async function ProfessionPage({ params }: PageProps) {
     "Extremadura": CITIES.filter((c) => ["badajoz", "caceres", "merida", "plasencia", "don-benito", "almendralejo"].includes(c)),
   }
 
+  // JSON-LD structured data
+  const faqSchema = content ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  } : null
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${profession.name} - ${SITE_NAME}`,
+    description: profession.description,
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      telephone: PHONE,
+      url: BASE_URL,
+      areaServed: { "@type": "Country", name: "Spain" },
+    },
+    serviceType: profession.name,
+    areaServed: { "@type": "Country", name: "Spain" },
+  }
+
   return (
     <main>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       {/* Hero */}
       <section className="gradient-hero text-white py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -204,6 +243,42 @@ export default async function ProfessionPage({ params }: PageProps) {
         </section>
       )}
 
+      {/* Situations - keyword rich */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Situaciones en las que te ayudamos</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {content.situations.map((sit) => (
+                <div key={sit.title} className="bg-white p-6 rounded-2xl border border-gray-200">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{sit.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{sit.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Emergency tips */}
+      {content && (
+        <section className="py-12 lg:py-16 bg-amber-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-amber-900 mb-6">Que hacer en caso de emergencia</h2>
+            <div className="space-y-4">
+              {content.emergencyTips.map((tip, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                    !
+                  </div>
+                  <p className="text-amber-900 leading-relaxed pt-1">{tip}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA mid-page */}
       <section className="py-10 gradient-hero text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -302,6 +377,15 @@ export default async function ProfessionPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {/* SEO text block */}
+      {content && (
+        <section className="py-12 bg-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-sm text-gray-500 leading-relaxed">{content.seoText}</p>
+          </div>
+        </section>
+      )}
 
       {/* CTA bottom */}
       <section className="py-12 gradient-hero text-white">

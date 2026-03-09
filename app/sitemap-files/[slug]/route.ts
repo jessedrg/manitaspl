@@ -14,6 +14,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
 
   // Base profession sitemap: /electricista, /fontanero, etc.
   if (VALID_PROFESSIONS.includes(slug)) {
+    // Main profession index page
+    urls.push({ loc: `${BASE_URL}/${slug}`, priority: "1.0" })
     for (const city of CITIES) {
       urls.push({ loc: `${BASE_URL}/${slug}/${city}`, priority: "0.8" })
     }

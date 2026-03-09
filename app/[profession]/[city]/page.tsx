@@ -126,8 +126,47 @@ export default async function ProfessionCityPage({ params }: PageProps) {
     subheading = `Profesionales certificados de ${profession.name.toLowerCase()} en ${cityName} (${provinceName})`
   }
 
+  // JSON-LD structured data
+  const localServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: heading,
+    description: subheading,
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      telephone: PHONE,
+      url: BASE_URL,
+      areaServed: { "@type": "City", name: cityName },
+    },
+    serviceType: profession.name,
+    areaServed: { "@type": "City", name: cityName, containedInPlace: { "@type": "AdministrativeArea", name: provinceName } },
+  }
+
+  const faqSchema = content ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: content.faq.slice(0, 3).map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  } : null
+
   return (
     <main>
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localServiceSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       {/* Hero */}
       <section className="gradient-hero text-white py-16 lg:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

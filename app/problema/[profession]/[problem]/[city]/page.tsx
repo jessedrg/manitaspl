@@ -73,8 +73,30 @@ export default async function ProblemCityPage({ params }: PageProps) {
   const problemName = getProblemDisplayName(problemId)
   const content = PROFESSION_CONTENT[professionId]
 
+  // JSON-LD structured data
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${problemName} - ${profession.name} en ${cityName}`,
+    description: `${profession.name}s certificados para resolver ${problemName.toLowerCase()} en ${cityName} (${provinceName})`,
+    provider: {
+      "@type": "LocalBusiness",
+      name: SITE_NAME,
+      telephone: PHONE,
+      url: BASE_URL,
+      areaServed: { "@type": "City", name: cityName },
+    },
+    serviceType: `${problemName} - ${profession.name}`,
+    areaServed: { "@type": "City", name: cityName, containedInPlace: { "@type": "AdministrativeArea", name: provinceName } },
+  }
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
       <section className="gradient-hero text-white py-16 lg:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="text-sm text-green-200 mb-6">

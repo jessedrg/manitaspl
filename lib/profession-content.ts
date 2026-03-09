@@ -7,6 +7,9 @@ export interface ProfessionContent {
   pricing: { service: string; range: string }[]
   pricingNote: string
   faq: { q: string; a: string }[]
+  situations: { title: string; desc: string }[]
+  seoText: string
+  emergencyTips: string[]
   cityIntro: (city: string, province: string) => string
   cityServices: (city: string) => string
   cityAdvice: (city: string) => string
@@ -54,6 +57,21 @@ export const PROFESSION_CONTENT: Record<string, ProfessionContent> = {
       { q: "Cuanto cuesta cambiar toda la instalacion electrica de un piso?", a: "Depende de los metros cuadrados y el estado actual. Para un piso de 80-100 m2, una reinstalacion completa (cableado, cuadro, mecanismos) cuesta entre 3.000 y 6.000 euros. Incluye boletin electrico." },
       { q: "Es obligatorio tener diferencial en casa?", a: "Si. Desde 2002, toda instalacion electrica en vivienda debe tener al menos un interruptor diferencial de 30 mA. Si tu instalacion no lo tiene, es antigua y deberia ser revisada por un electricista autorizado." },
       { q: "Puedo instalar un punto de recarga para mi coche electrico en el garaje de mi comunidad?", a: "Si. La Ley de Propiedad Horizontal permite instalar un punto de recarga individual en tu plaza de garaje comunicandolo a la comunidad, sin necesidad de aprobacion en junta. Nosotros nos encargamos de la instalacion, el proyecto tecnico y la comunicacion." },
+    ],
+    situations: [
+      { title: "Se ha ido la luz en casa", desc: "Si te has quedado sin luz, puede ser un corte general del suministro, un diferencial que ha saltado o una averia en tu instalacion. Primero comprueba si tus vecinos tienen luz. Si solo eres tu, revisa el cuadro electrico. Si no encuentras la causa, llamanos." },
+      { title: "Un enchufe echa chispas", desc: "Un enchufe que echa chispas o huele a quemado es una señal de peligro real. Desenchufa inmediatamente lo que tengas conectado, baja el magnetotermico de ese circuito y llamanos. No lo uses hasta que lo revise un electricista." },
+      { title: "Salta el diferencial constantemente", desc: "Si el diferencial salta cada vez que enchufas algo o de forma aleatoria, hay una derivacion a tierra en algun punto de la instalacion. Puede ser un electrodomestico averiado o un cable dañado. Necesitas un electricista para localizar el punto exacto con un megometro." },
+      { title: "Necesito mas potencia electrica", desc: "Si te saltan los plomos cuando enciendes varios aparatos a la vez, probablemente necesitas una ampliacion de potencia. Revisamos tu instalacion, verificamos que soporta mas potencia y te tramitamos el cambio con la distribuidora. Puede requerir boletin electrico." },
+      { title: "Quiero instalar un punto de recarga para coche electrico", desc: "Instalamos wallbox en garajes comunitarios e individuales. Nos encargamos del proyecto tecnico, la comunicacion a la comunidad de vecinos, la instalacion del cuadro de protecciones y la puesta en marcha. Todo legalizado." },
+      { title: "Tengo una reforma y necesito nueva instalacion electrica", desc: "Diseñamos e instalamos la electricidad completa para tu reforma: esquema unifilar, cuadro electrico, cableado, mecanismos, iluminacion y tomas de corriente. Todo segun REBT y con boletin electrico incluido." },
+    ],
+    seoText: "En ManitasPL somos especialistas en solucionar problemas electricos en viviendas, pisos, chalets, locales comerciales y comunidades de vecinos en toda Espana. Nuestros electricistas profesionales tienen carnet de instalador autorizado y estan habilitados para emitir boletines electricos y certificados de instalacion (CIE). Trabajamos con averias electricas de todo tipo: cortocircuitos, apagones, enchufes que no funcionan, luces que parpadean, diferenciales que saltan, magnetotermicos que se disparan, cuadros electricos antiguos, cables recalentados, subidas de tension y problemas de potencia. Tambien realizamos instalaciones nuevas completas, reformas electricas, cambios de cuadro electrico, instalacion de iluminacion LED, domotica, videoporteros, porteros automaticos, puntos de recarga para coche electrico y todo tipo de trabajos electricos con garantia. Cubrimos mas de 400 ciudades en España con electricistas locales que conocen la normativa y las instalaciones tipicas de cada zona. Presupuesto cerrado antes de empezar, sin costes ocultos y con garantia por escrito en cada trabajo.",
+    emergencyTips: [
+      "Si hueles a quemado o ves humo saliendo de un enchufe, cuadro electrico o cable, corta la corriente general desde el ICP (interruptor de control de potencia) y llamanos inmediatamente.",
+      "Si se ha ido la luz en toda la casa, comprueba el cuadro electrico: si hay algun interruptor bajado, subelo. Si vuelve a saltar, no insistas y llama a un electricista.",
+      "Nunca toques cables pelados, enchufes dañados o aparatos electricos con las manos mojadas. El riesgo de electrocucion es real.",
+      "Si tienes un corte de luz parcial (unas habitaciones si y otras no), probablemente ha saltado un magnetotermico de un circuito concreto. Revisa el cuadro.",
     ],
     cityIntro: (city, province) =>
       `Disponemos de electricistas certificados en ${city} y toda la provincia de ${province}. Nuestros profesionales conocen las particularidades de las instalaciones electricas de la zona, desde edificios del casco antiguo con instalaciones de aluminio hasta urbanizaciones nuevas con domotica. Respuesta rapida y servicio garantizado.`,
@@ -105,6 +123,21 @@ export const PROFESSION_CONTENT: Record<string, ProfessionContent> = {
       { q: "Puedo cambiar tuberias de plomo por otras mas seguras?", a: "Si, y es muy recomendable. Las tuberias de plomo estan prohibidas en nuevas instalaciones desde hace decadas por riesgo sanitario. Podemos sustituirlas por multicapa o PEX, que son seguras, duraderas y no contaminan el agua." },
       { q: "Merece la pena reparar un calentador viejo o es mejor cambiarlo?", a: "Si el calentador tiene mas de 10-12 años y la reparacion supera los 200-250 euros, suele ser mas rentable sustituirlo por uno nuevo. Los modelos actuales son mas eficientes y tienen garantia de 2-5 años." },
     ],
+    situations: [
+      { title: "Hay una fuga de agua en casa", desc: "Si ves agua saliendo por una pared, techo o suelo, cierra la llave de paso general de tu vivienda inmediatamente. Esto para la fuga y evita daños mayores. Luego llamanos: localizamos el punto exacto de la fuga con tecnologia sin obra y la reparamos." },
+      { title: "El grifo gotea y no para", desc: "Un grifo que gotea desperdicia hasta 100 litros al dia. Suele ser un problema de la goma interior, el cartucho ceramico o la junta torica. Es una reparacion rapida y barata que evita un gasto innecesario en la factura del agua." },
+      { title: "No sale agua caliente", desc: "Si no tienes agua caliente, el problema puede estar en el calentador, el termo electrico, la caldera o la griferia termostatica. Nuestros fontaneros diagnostican la causa exacta y te dan solucion inmediata." },
+      { title: "La cisterna del WC no para de correr", desc: "Una cisterna que no para de llenarse pierde hasta 200 litros de agua al dia. El problema suele estar en el mecanismo de descarga o en la valvula de llenado. Reparacion sencilla en 30-45 minutos." },
+      { title: "Hay una mancha de humedad en el techo", desc: "Las manchas de humedad en techos indican una fuga en la instalacion del piso de arriba, en una bajante o en la cubierta. Usamos camaras termicas para localizar el origen sin picar. Es importante actuar rapido para evitar daños estructurales." },
+      { title: "Quiero reformar el baño o la cocina", desc: "Hacemos la fontaneria completa de tu reforma: desplazamiento de tomas de agua fria y caliente, nuevos desagues, instalacion de sanitarios, griferia, platos de ducha, bañeras y fregaderos. Coordinamos con tu albañil o reformista." },
+    ],
+    seoText: "En ManitasPL somos fontaneros profesionales especializados en reparaciones de fontaneria, deteccion de fugas sin obra, sustitucion de tuberias, instalacion de griferia, reparacion de cisternas, calentadores de agua, termos electricos y fontaneria integral para reformas de baño y cocina. Nuestros fontaneros trabajan con todos los materiales: cobre, PEX, multicapa, PPR, hierro galvanizado y plomo (para sustituciones). Resolvemos fugas de agua, roturas de tuberias, goteos en grifos, atascos en desagues, problemas con la presion del agua, calentadores que no funcionan, cisternas que pierden agua, bajantes rotos y cualquier emergencia de fontaneria. Utilizamos tecnologia avanzada de deteccion: camaras termicas, equipos de correlacion acustica y gas trazador para localizar fugas ocultas sin romper paredes ni suelos. Servicio en mas de 400 ciudades de España con fontaneros locales. Presupuesto cerrado, sin sorpresas y con garantia por escrito.",
+    emergencyTips: [
+      "Si hay una fuga importante, cierra la llave de paso general INMEDIATAMENTE. Esta suele estar debajo del fregadero de la cocina o en el cuarto de contadores.",
+      "Si la fuga viene del techo, coloca un cubo debajo y avisa al vecino de arriba para que cierre su llave de paso.",
+      "Si hay riesgo de inundacion, desconecta los electrodomesticos cercanos para evitar cortocircuitos.",
+      "No intentes reparar una tuberia rota con cinta aislante o masilla provisional: solo empeora el problema. Cierra el agua y espera al fontanero.",
+    ],
     cityIntro: (city, province) =>
       `Contamos con fontaneros profesionales en ${city} y toda la provincia de ${province}. Conocemos las redes de agua y las particularidades de la fontaneria local: dureza del agua, materiales habituales de las instalaciones y normativa municipal. Respuesta rapida para urgencias y servicio programado para reformas.`,
     cityServices: (city) =>
@@ -154,6 +187,21 @@ export const PROFESSION_CONTENT: Record<string, ProfessionContent> = {
       { q: "Merece la pena poner una cerradura antibumping?", a: "Si. El bumping es el metodo de robo mas utilizado en Espana. Un bombillo antibumping de buena marca (Keso, Ezcurra, Lince) cuesta entre 80 y 180 euros instalado y es la mejor inversion en seguridad para tu hogar." },
       { q: "Que hago si han intentado robar en mi casa?", a: "Primero, no toques nada y llama a la policia para que levanten acta. Despues, llamanos: te enviamos un cerrajero para sustituir la cerradura dañada y reforzar la puerta. El acta policial puede servirte para el seguro del hogar." },
       { q: "Que diferencia hay entre puerta blindada y acorazada?", a: "La puerta blindada tiene una hoja de madera reforzada con una o dos chapas de acero. La puerta acorazada tiene un marco y una hoja completamente de acero, revestidos de madera por estetica. La acorazada ofrece mas seguridad pero tambien es mas cara (1.500-4.000 euros vs 600-1.500 euros)." },
+    ],
+    situations: [
+      { title: "Me he dejado las llaves dentro de casa", desc: "Es la situacion mas habitual. Nuestros cerrajeros abren tu puerta sin dañarla usando tecnicas no destructivas (ganzuas, impresioning). En el 90% de los casos no hay que cambiar nada: solo abrir y entrar. Rapido, limpio y sin daños." },
+      { title: "La cerradura no gira o esta atascada", desc: "Una cerradura atascada puede deberse a un bombillo desgastado, un mecanismo oxidado o una llave deformada. No fuerces la llave: puedes partirla dentro y complicar la situacion. Llamanos y lo resolvemos sin dañar la puerta." },
+      { title: "Han intentado robar en mi casa", desc: "Si ves marcas de palanca, el bombillo manipulado o la puerta forzada, no toques nada y llama a la policia primero. Despues llamanos: sustituimos la cerradura dañada, reforzamos la puerta y te asesoramos sobre mejoras de seguridad." },
+      { title: "Quiero mejorar la seguridad de mi puerta", desc: "Instalamos bombillos antibumping, cerraduras de seguridad multipunto, escudos de proteccion y cerraduras inteligentes. Evaluamos tu puerta actual y te recomendamos la mejor opcion sin intentar venderte lo mas caro." },
+      { title: "Se ha roto la llave dentro de la cerradura", desc: "No intentes sacarla con pinzas o alicates: puedes empujarla mas adentro. Nuestros cerrajeros extraen la llave rota y dejan la cerradura operativa. Si el bombillo esta dañado, lo sustituimos en el momento." },
+      { title: "Necesito copias de llaves de seguridad", desc: "Hacemos copias de llaves de seguridad, llaves de puntos, llaves de serreta y llaves especiales. Para llaves protegidas por patente, necesitamos la tarjeta de propiedad." },
+    ],
+    seoText: "En ManitasPL somos cerrajeros profesionales especializados en aperturas de puertas sin daños, cambios de cerradura, instalacion de cerraduras de seguridad antibumping, cerraduras multipunto, bombillos de alta seguridad, puertas blindadas y acorazadas, cerraduras inteligentes y servicio urgente despues de un robo o intento de robo. Trabajamos con todas las marcas de cerraduras: Keso, Ezcurra, Lince, Tesa, Yale, Iseo, Mottura, Fichet, Mul-T-Lock y Vachette. Nuestros cerrajeros dominan tecnicas de apertura no destructivas para abrir tu puerta sin daños en la inmensa mayoria de casos. Tambien realizamos duplicados de llaves, reparacion de puertas blindadas, ajuste de bisagras, instalacion de escudos de proteccion y asesoramiento integral en seguridad para el hogar. Servicio en mas de 400 ciudades de España con cerrajeros locales identificados. Precio cerrado antes de actuar, sin sorpresas y con garantia del fabricante en todo el material instalado.",
+    emergencyTips: [
+      "Si te has quedado fuera de casa, no intentes abrir la puerta tu mismo con tarjetas, alambres o herramientas: puedes dañar la cerradura y encarecer la reparacion.",
+      "Si han intentado robar, no toques la puerta ni la cerradura hasta que venga la policia. Necesitas el atestado para el seguro.",
+      "Si la llave se ha partido dentro de la cerradura, no metas otra llave ni intentes extraer el trozo con herramientas caseras.",
+      "Si tu puerta se ha cerrado de un golpe de aire con las llaves dentro, manten la calma y llamanos. Es la apertura mas sencilla y rapida.",
     ],
     cityIntro: (city, province) =>
       `Contamos con cerrajeros profesionales en ${city} y toda la provincia de ${province}. Nuestros cerrajeros conocen los tipos de puertas y cerraduras mas habituales en la zona y van equipados para resolver cualquier situacion: aperturas, cambios de cerradura, refuerzos de seguridad y reparaciones urgentes.`,
@@ -205,6 +253,21 @@ export const PROFESSION_CONTENT: Record<string, ProfessionContent> = {
       { q: "Se ha desbordado una arqueta, que hago?", a: "No pises el agua desbordada (puede contener bacterias). Cierra el agua de casa si es posible y llamanos. Es una situacion que requiere atencion rapida para evitar daños en suelos, paredes y mobiliario." },
       { q: "Se pueden meter raices en las tuberias?", a: "Si, es uno de los problemas mas habituales en viviendas unifamiliares con jardin. Las raices de arboles y arbustos penetran por las juntas de la tuberia buscando agua y van obstruyendola. Se eliminan con fresadora mecanica y, en casos graves, hay que reparar o sustituir el tramo afectado." },
     ],
+    situations: [
+      { title: "El WC no traga o esta atascado", desc: "Un inodoro atascado suele deberse a un exceso de papel, toallitas humedas tiradas al WC o un objeto que ha caido. Puedes probar con un desatascador de ventosa. Si no funciona, llamanos: lo resolvemos con equipo profesional en minutos." },
+      { title: "Sale mal olor de los desagues", desc: "El mal olor en desagues indica acumulacion de grasa, restos organicos o un sifon seco. Si echas agua caliente y el olor persiste, necesitas una limpieza profesional del tramo de tuberia afectado." },
+      { title: "El agua no baja en la ducha o el fregadero", desc: "Un desague lento es el primer sintoma de un atasco en formacion. No esperes a que se bloquee del todo: una limpieza a tiempo es mas rapida, mas barata y evita desbordamientos." },
+      { title: "Se ha desbordado una arqueta o pozo", desc: "Si una arqueta se desborda, no pises el agua (contiene bacterias) y llamanos inmediatamente. Enviamos equipo de desatasco de alta presion o camion cuba segun la gravedad." },
+      { title: "La fosa septica esta llena", desc: "Si los desagues van lentos, hay burbujas en el WC o hueles mal en el jardin, la fosa septica necesita vaciado. Nuestros camiones cuba vacian la fosa y gestionan el vertido autorizado de los residuos." },
+      { title: "Bañera o plato de ducha atascado", desc: "Los atascos en bañeras y duchas se producen por acumulacion de pelo, jabon y cal. Los productos quimicos raramente funcionan y dañan las tuberias. Nosotros limpiamos con agua a presion: resultado inmediato y tuberia como nueva." },
+    ],
+    seoText: "En ManitasPL somos especialistas en desatascos profesionales con maquinaria de ultima generacion. Desatascamos tuberias, inodoros, fregaderos, duchas, bañeras, bajantes, arquetas, colectores y fosas septicas en viviendas, comunidades de vecinos, restaurantes, hoteles y locales comerciales. Utilizamos equipos de agua a alta presion (200-400 bar), fresadoras mecanicas rotativas, camaras de inspeccion CCTV robotizadas y camiones cuba de 3.000 a 15.000 litros de capacidad. Nuestros tecnicos diagnostican el problema con camaras de television antes de intervenir para aplicar la solucion mas eficaz y evitar tratamientos innecesarios. Resolvemos todo tipo de atascos: tapones de grasa, acumulaciones de cal, raices dentro de tuberias, toallitas y objetos caidos, sedimentos, incrustaciones y obstrucciones en cualquier tipo de tuberia. Servicio de desatascos en mas de 400 ciudades de España con equipos locales. Desatasco garantizado: si se repite en 3 meses por la misma causa, volvemos gratis.",
+    emergencyTips: [
+      "Si el WC esta atascado, no tires mas de la cadena: solo conseguiras que se desborde.",
+      "No eches productos quimicos desatascadores: suelen ser ineficaces para atascos reales y dañan las tuberias (especialmente las de PVC antiguo).",
+      "Si se ha desbordado una arqueta o el WC, no pises el agua. Contiene bacterias y puede ser un riesgo sanitario.",
+      "Si hueles a alcantarilla en casa, puede ser un sifon seco (echa un vaso de agua por cada desague que no uses) o una obstruccion en la red de saneamiento.",
+    ],
     cityIntro: (city, province) =>
       `Disponemos de equipos de desatascos en ${city} y toda la provincia de ${province}. Furgonetas con equipo de alta presion para atascos domesticos y camiones cuba para trabajos de mayor envergadura. Conocemos la red de saneamiento de la zona y las incidencias mas habituales.`,
     cityServices: (city) =>
@@ -254,6 +317,21 @@ export const PROFESSION_CONTENT: Record<string, ProfessionContent> = {
       { q: "Merece la pena cambiar mi caldera vieja por una de condensacion?", a: "Si tu caldera tiene mas de 12-15 años, probablemente si. Las calderas de condensacion son un 20-30% mas eficientes que las convencionales. En una vivienda media, esto supone un ahorro de 200-400 euros al año en gas. La inversion se recupera en 4-6 años." },
       { q: "Que es la aerotermia y merece la pena?", a: "La aerotermia es un sistema que extrae calor del aire exterior para calentar tu casa y el agua. Es electrica, no usa gas. Por cada kW que consume, genera 3-5 kW de calor. Es la opcion mas eficiente, pero la inversion inicial es mayor (6.000-15.000 euros). Merece la pena en viviendas unifamiliares y en zonas con clima moderado." },
       { q: "Mi caldera pierde presion constantemente, es grave?", a: "Si la caldera pierde presion lentamente (baja 0,2-0,5 bar por semana), probablemente tienes una fuga pequeña en el circuito de calefaccion (un radiador, una valvula o una union). No es urgente pero hay que localizarla y repararla. Si baja de presion rapido, puede ser la valvula de seguridad o el vaso de expansion dañado, y hay que revisarlo cuanto antes." },
+    ],
+    situations: [
+      { title: "La caldera no enciende", desc: "Las causas mas comunes son: presion baja (comprueba el manometro, debe estar entre 1 y 1,5 bar), fallo del encendido electronico, sensor de llama sucio o falta de gas. Si el manometro esta bajo, prueba a rellenar el circuito con la llave de llenado. Si sigue sin encender, llamanos." },
+      { title: "La caldera pierde presion", desc: "Si la presion baja constantemente (cada pocos dias), hay una fuga en el circuito de calefaccion: un radiador, una valvula o el propio vaso de expansion de la caldera. Nuestros tecnicos localizan la fuga y la reparan." },
+      { title: "No tengo agua caliente", desc: "Si la calefaccion funciona pero no sale agua caliente (o viceversa), el problema suele estar en la valvula de tres vias, el intercambiador de placas o el sensor de temperatura de ACS. Es una reparacion habitual." },
+      { title: "La caldera hace ruido extraño", desc: "Ruidos de burbujeo indican aire en el circuito (se soluciona purgando los radiadores). Ruidos de golpeteo pueden indicar cal en el intercambiador. Silbidos pueden indicar presion incorrecta. Cada ruido tiene su causa y su solucion." },
+      { title: "Huele a gas cerca de la caldera", desc: "Si hueles a gas, abre las ventanas inmediatamente, no enciendas ni apagues nada electrico, sal de la vivienda y llama al 112 y al telefono de emergencias de gas (900 750 750). Una vez descartado el peligro, llamanos para revisar la caldera." },
+      { title: "Necesito la revision anual de la caldera", desc: "La revision de caldera de gas es obligatoria cada 2 años segun el RITE. Incluye analisis de combustion, comprobacion de seguridades, limpieza de quemador y emision del certificado oficial. Llamanos y la programamos en tu horario." },
+    ],
+    seoText: "En ManitasPL somos tecnicos de calderas certificados por los principales fabricantes: Junkers/Bosch, Vaillant, Saunier Duval, Baxi, Ferroli, Cointra, Ariston, Beretta, Roca y Hermann. Realizamos revisiones anuales obligatorias con certificado oficial, reparacion de todo tipo de averias (caldera que no enciende, pierde presion, no da agua caliente, hace ruido, da error, pierde agua, no arranca la calefaccion), instalacion de calderas nuevas de condensacion, sustitucion de calderas antiguas, mantenimiento de radiadores, purgado y equilibrado de circuitos de calefaccion, instalacion de termostatos inteligentes y sistemas de aerotermia. Nuestros tecnicos tienen el carnet de instalador de gas en vigor y pueden tramitar el alta de la instalacion, el certificado de revision de gas y cualquier tramite con la compañia distribuidora. Servicio en mas de 400 ciudades de España con tecnicos locales especializados en las marcas mas instaladas de cada zona. Presupuesto cerrado, piezas originales y garantia por escrito.",
+    emergencyTips: [
+      "Si hueles a gas, NO enciendas ni apagues luces ni ningun aparato electrico. Abre ventanas, sal de casa y llama al 112.",
+      "Si la caldera pierde agua de forma visible, cierra la llave de gas y la llave de agua de la caldera y llamanos.",
+      "Si un radiador pierde agua por una valvula, coloca un recipiente debajo y cierra la valvula de ese radiador (gira el mando en sentido horario). Si no se cierra, cierra la llave de llenado de la caldera.",
+      "Si la caldera muestra un codigo de error, anotalo antes de llamarnos. Con el codigo y la marca/modelo podemos anticipar que pieza necesitamos y venir preparados.",
     ],
     cityIntro: (city, province) =>
       `Contamos con tecnicos de calderas certificados en ${city} y toda la provincia de ${province}. Nuestros profesionales conocen las marcas de calderas mas instaladas en la zona y llevan las piezas mas habituales en la furgoneta para resolver la mayoria de averias en una sola visita.`,
