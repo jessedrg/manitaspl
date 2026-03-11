@@ -1,4 +1,4 @@
-import { VALID_PROFESSIONS, KNOWN_MODIFIERS, PROBLEMS } from "@/lib/professions"
+import { VALID_PROFESSIONS, KNOWN_MODIFIERS, KNOWN_PREFIXES, PROBLEMS } from "@/lib/professions"
 
 const BASE_URL = "https://www.manitaspl.com"
 
@@ -9,6 +9,9 @@ export async function GET() {
     sitemaps.push(`${BASE_URL}/sitemap-files/${prof}.xml`)
     for (const mod of KNOWN_MODIFIERS) {
       sitemaps.push(`${BASE_URL}/sitemap-files/${prof}-${mod}.xml`)
+    }
+    for (const prefix of KNOWN_PREFIXES) {
+      sitemaps.push(`${BASE_URL}/sitemap-files/${prefix}-${prof}.xml`)
     }
     const problems = PROBLEMS[prof] || []
     for (const problem of problems) {
