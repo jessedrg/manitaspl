@@ -1,10 +1,9 @@
 import { VALID_PROFESSIONS, KNOWN_MODIFIERS, KNOWN_PREFIXES, PROBLEMS } from "@/lib/professions"
 import { CITIES } from "@/lib/cities"
+import { BASE_URL, LAST_UPDATED } from "@/lib/constants"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
-
-const BASE_URL = "https://www.manitaspl.com"
 
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const rawSlug = (await params).slug
@@ -59,13 +58,13 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
     return new Response("Not found", { status: 404 })
   }
 
-  const today = new Date().toISOString().split("T")[0]
+  const lastmod = LAST_UPDATED
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join("\n")}
