@@ -1,6 +1,6 @@
 export const SITE_NAME = "ManitasPL"
 export const SITE_DOMAIN = "manitaspl.com"
 export const BASE_URL = "https://www.manitaspl.com"
-export const LAST_UPDATED = "2025-03-11"
+export const LAST_UPDATED = "2025-03-18"
 export const PHONE = "+34936941874"
 export const PHONE_DISPLAY = "936 941 874"
