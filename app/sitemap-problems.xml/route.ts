@@ -1,17 +1,10 @@
-import { VALID_PROFESSIONS, KNOWN_MODIFIERS, KNOWN_PREFIXES, PROBLEMS } from "@/lib/professions"
+import { VALID_PROFESSIONS, PROBLEMS } from "@/lib/professions"
 import { BASE_URL, LAST_UPDATED } from "@/lib/constants"
 
 export async function GET() {
   const sitemaps: string[] = []
 
   for (const prof of VALID_PROFESSIONS) {
-    sitemaps.push(`${BASE_URL}/sitemap-files/${prof}.xml`)
-    for (const mod of KNOWN_MODIFIERS) {
-      sitemaps.push(`${BASE_URL}/sitemap-files/${prof}-${mod}.xml`)
-    }
-    for (const prefix of KNOWN_PREFIXES) {
-      sitemaps.push(`${BASE_URL}/sitemap-files/${prefix}-${prof}.xml`)
-    }
     const problems = PROBLEMS[prof] || []
     for (const problem of problems) {
       sitemaps.push(`${BASE_URL}/sitemap-files/${problem}-${prof}.xml`)

@@ -9,6 +9,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://www.manitaspl.com/sitemap-v2.xml",
+    sitemap: [
+      "https://www.manitaspl.com/sitemap-professions.xml",
+      "https://www.manitaspl.com/sitemap-modifiers.xml",
+      "https://www.manitaspl.com/sitemap-problems.xml",
+    ],
   }
 }
