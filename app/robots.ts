@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://www.manitaspl.com/sitemap-v1.xml",
+    sitemap: "https://www.manitaspl.com/sitemap-v2.xml",
   }
 }
