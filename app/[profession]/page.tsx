@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const profession = PROFESSIONS.find((p) => p.id === professionId)
   if (!profession) return {}
 
-  const title = `${profession.name} en toda España | Profesionales Certificados | ${SITE_NAME}`
+  const title = `${profession.name} en toda Espana | Profesionales Certificados | ${SITE_NAME}`
   const description = `${profession.description} Cobertura en mas de 400 ciudades. Presupuesto sin compromiso. Llama al ${PHONE_DISPLAY}.`
 
   return {
@@ -118,24 +118,27 @@ export default async function ProfessionPage({ params }: PageProps) {
       )}
 
       {/* Hero */}
-      <section className="gradient-hero text-white py-16 lg:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="text-sm text-green-200 mb-6">
-            <Link href="/" className="hover:text-white">Inicio</Link>
-            <span className="mx-2">/</span>
+      <section className="relative bg-[#0f4a28] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyek0zNiAyNHYySDI0di0yaDEyeiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <nav className="flex items-center gap-2 text-sm text-green-200 mb-8">
+            <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+            <svg className="w-4 h-4 text-green-300/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
             <span className="text-white">{profession.name}</span>
           </nav>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-6 text-balance">
-            {profession.name} en toda España
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-balance">
+            {profession.name} en toda Espana
           </h1>
           {content && (
-            <p className="text-lg text-green-100 mb-8 max-w-3xl leading-relaxed">
+            <p className="text-lg text-green-100/90 mb-10 max-w-3xl leading-relaxed">
               {content.heroSubtitle}
             </p>
           )}
           <a
             href={`tel:${PHONE}`}
-            className="inline-flex items-center gap-2 gradient-cta text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:shadow-xl transition-shadow"
+            className="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -147,23 +150,25 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* What we do */}
       {content && (
-        <section className="py-12 lg:py-16 bg-white">
+        <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Que hacemos</h2>
-            <p className="text-gray-600 leading-relaxed text-base">{content.whatWeDo}</p>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Sobre el servicio</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 tracking-tight">Que hacemos</h2>
+            <p className="text-gray-600 leading-relaxed text-lg">{content.whatWeDo}</p>
           </div>
         </section>
       )}
 
       {/* Services we offer */}
       {content && (
-        <section className="py-12 lg:py-16 bg-gray-50">
+        <section className="py-16 lg:py-20 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Servicios que ofrecemos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Servicios</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Servicios que ofrecemos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {content.services.map((svc) => (
-                <div key={svc.title} className="bg-white p-6 rounded-2xl border border-gray-200">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{svc.title}</h3>
+                <div key={svc.title} className="bg-white p-6 rounded-2xl border border-gray-200 hover:border-transparent hover:shadow-lg transition-all">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{svc.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{svc.desc}</p>
                 </div>
               ))}
@@ -174,13 +179,14 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* How we work */}
       {content && (
-        <section className="py-12 lg:py-16 bg-white">
+        <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Como trabajamos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Proceso</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Como trabajamos</h2>
             <div className="space-y-6">
               {content.howWeWork.map((step, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                <div key={i} className="flex gap-5">
+                  <div className="w-10 h-10 rounded-full bg-[#0f4a28] text-white flex items-center justify-center font-semibold text-sm shrink-0">
                     {i + 1}
                   </div>
                   <p className="text-gray-600 leading-relaxed pt-2">{step}</p>
@@ -193,18 +199,21 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* Why choose us */}
       {content && (
-        <section className="py-12 lg:py-16 bg-brand-50">
+        <section className="py-16 lg:py-20 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Por que elegirnos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Ventajas</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Por que elegirnos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {content.whyUs.map((item) => (
-                <div key={item.title} className="bg-white p-6 rounded-2xl shadow-sm">
-                  <div className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-brand-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                <div key={item.title} className="bg-white p-6 rounded-2xl border border-gray-200">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+                      <svg className="w-5 h-5 text-[#0f4a28]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
@@ -217,41 +226,43 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* Pricing */}
       {content && (
-        <section className="py-12 lg:py-16 bg-white">
+        <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Precios orientativos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Tarifas</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Precios orientativos</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-3 pr-4 text-sm font-bold text-gray-900">Servicio</th>
-                    <th className="text-right py-3 pl-4 text-sm font-bold text-gray-900">Precio estimado</th>
+                    <th className="text-left py-4 pr-4 text-sm font-semibold text-gray-900">Servicio</th>
+                    <th className="text-right py-4 pl-4 text-sm font-semibold text-gray-900">Precio estimado</th>
                   </tr>
                 </thead>
                 <tbody>
                   {content.pricing.map((row) => (
                     <tr key={row.service} className="border-b border-gray-100">
-                      <td className="py-3 pr-4 text-sm text-gray-700">{row.service}</td>
-                      <td className="py-3 pl-4 text-sm text-brand-700 font-semibold text-right">{row.range}</td>
+                      <td className="py-4 pr-4 text-gray-700">{row.service}</td>
+                      <td className="py-4 pl-4 text-[#0f4a28] font-semibold text-right">{row.range}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-gray-500 mt-4 leading-relaxed">{content.pricingNote}</p>
+            <p className="text-sm text-gray-500 mt-6 leading-relaxed">{content.pricingNote}</p>
           </div>
         </section>
       )}
 
       {/* Situations - keyword rich */}
       {content && (
-        <section className="py-12 lg:py-16 bg-gray-50">
+        <section className="py-16 lg:py-20 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Situaciones en las que te ayudamos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Casos</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Situaciones en las que te ayudamos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {content.situations.map((sit) => (
                 <div key={sit.title} className="bg-white p-6 rounded-2xl border border-gray-200">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{sit.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{sit.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{sit.desc}</p>
                 </div>
               ))}
@@ -262,12 +273,13 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* Emergency tips */}
       {content && (
-        <section className="py-12 lg:py-16 bg-amber-50">
+        <section className="py-16 lg:py-20 bg-amber-50 border-y border-amber-100">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-amber-900 mb-6">Que hacer en caso de emergencia</h2>
+            <p className="text-sm font-medium text-amber-700 uppercase tracking-widest mb-3">Emergencias</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-amber-900 mb-8 tracking-tight">Que hacer en caso de emergencia</h2>
             <div className="space-y-4">
               {content.emergencyTips.map((tip, i) => (
-                <div key={i} className="flex gap-4">
+                <div key={i} className="flex gap-4 bg-white p-4 rounded-xl border border-amber-200">
                   <div className="w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
                     !
                   </div>
@@ -280,31 +292,35 @@ export default async function ProfessionPage({ params }: PageProps) {
       )}
 
       {/* CTA mid-page */}
-      <section className="py-10 gradient-hero text-white">
+      <section className="py-16 bg-[#0f4a28] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-3">
-            Necesitas un {profession.name.toLowerCase()}? Llamanos ahora
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 tracking-tight">
+            Necesitas un {profession.name.toLowerCase()}?
           </h2>
-          <p className="text-green-100 mb-5">Presupuesto sin compromiso. Profesionales en tu zona.</p>
+          <p className="text-green-100/90 mb-8">Presupuesto sin compromiso. Profesionales en tu zona.</p>
           <a
             href={`tel:${PHONE}`}
-            className="inline-block gradient-cta text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg"
+            className="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-full text-xl font-semibold shadow-lg transition-all"
           >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
             {PHONE_DISPLAY}
           </a>
         </div>
       </section>
 
       {/* Main cities quick links */}
-      <section className="py-12 bg-white">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{profession.name} en las principales ciudades</h2>
+          <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Cobertura</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 tracking-tight">{profession.name} en las principales ciudades</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {MAIN_CITIES.filter((c) => CITIES.includes(c)).map((city) => (
               <Link
                 key={city}
                 href={`/${professionId}/${city}`}
-                className="px-4 py-3 bg-brand-50 hover:bg-brand-100 rounded-xl text-sm font-medium text-brand-800 transition-colors text-center"
+                className="px-4 py-3 bg-gray-50 hover:bg-[#0f4a28] hover:text-white rounded-xl text-sm font-medium text-gray-700 transition-colors text-center"
               >
                 {getCityName(city)}
               </Link>
@@ -315,15 +331,16 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* Problems */}
       {problems.length > 0 && (
-        <section className="py-12 bg-gray-50">
+        <section className="py-16 lg:py-20 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Problemas que resolvemos</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Soluciones</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 tracking-tight">Problemas que resolvemos</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {problems.map((problem) => (
                 <Link
                   key={problem}
                   href={`/problema/${professionId}/${problem}/madrid`}
-                  className="px-4 py-3 bg-white border border-gray-200 hover:border-brand-300 rounded-xl text-sm text-gray-700 hover:text-brand-700 transition-colors text-center"
+                  className="px-4 py-3 bg-white border border-gray-200 hover:border-[#0f4a28] hover:text-[#0f4a28] rounded-xl text-sm text-gray-700 transition-colors text-center"
                 >
                   {problem.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")}
                 </Link>
@@ -335,13 +352,14 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       {/* FAQ */}
       {content && (
-        <section className="py-12 lg:py-16 bg-white">
+        <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">Preguntas frecuentes</h2>
+            <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">FAQ</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">Preguntas frecuentes</h2>
             <div className="space-y-6">
               {content.faq.map((item, i) => (
                 <div key={i} className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{item.q}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.q}</h3>
                   <p className="text-gray-600 leading-relaxed">{item.a}</p>
                 </div>
               ))}
@@ -351,20 +369,21 @@ export default async function ProfessionPage({ params }: PageProps) {
       )}
 
       {/* Cities by region */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">{profession.name} por comunidad autonoma</h2>
+          <p className="text-sm font-medium text-amber-600 uppercase tracking-widest mb-3">Regiones</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 tracking-tight">{profession.name} por comunidad autonoma</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(regions).map(([region, cities]) => (
               cities.length > 0 && (
                 <div key={region}>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3 border-b border-gray-200 pb-2">{region}</h3>
-                  <ul className="space-y-1">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">{region}</h3>
+                  <ul className="space-y-2">
                     {cities.map((city) => (
                       <li key={city}>
                         <Link
                           href={`/${professionId}/${city}`}
-                          className="text-sm text-gray-600 hover:text-brand-700 transition-colors"
+                          className="text-sm text-gray-600 hover:text-[#0f4a28] transition-colors"
                         >
                           {profession.name} en {getCityName(city)}
                         </Link>
@@ -388,16 +407,19 @@ export default async function ProfessionPage({ params }: PageProps) {
       )}
 
       {/* CTA bottom */}
-      <section className="py-12 gradient-hero text-white">
+      <section className="py-16 lg:py-20 bg-[#0f4a28] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 tracking-tight">
             Necesitas un {profession.name.toLowerCase()}?
           </h2>
-          <p className="text-green-100 mb-6">Llamanos sin compromiso. Presupuesto gratuito y servicio garantizado en toda España.</p>
+          <p className="text-green-100/90 mb-10 text-lg">Llamanos sin compromiso. Presupuesto gratuito y servicio garantizado en toda Espana.</p>
           <a
             href={`tel:${PHONE}`}
-            className="inline-block gradient-cta text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg"
+            className="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-10 py-5 rounded-full text-xl font-semibold shadow-lg transition-all"
           >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
             {PHONE_DISPLAY}
           </a>
         </div>
