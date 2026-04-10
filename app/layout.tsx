@@ -1,10 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SITE_NAME, BASE_URL } from "@/lib/constants"
 import "./globals.css"
+
+const inter = Inter({ 
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: `${SITE_NAME} | Servicios para el Hogar - Electricistas, Fontaneros, Cerrajeros`,
@@ -54,12 +60,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className={`scroll-smooth ${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased bg-white text-gray-900">
         <Header />
         {children}
         <Footer />

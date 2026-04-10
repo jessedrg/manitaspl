@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+      },
       colors: {
         brand: {
           50: "#f0fdf4",
@@ -20,6 +23,7 @@ const config: Config = {
           700: "#15803d",
           800: "#166534",
           900: "#14532d",
+          950: "#0f4a28",
         },
         accent: {
           50: "#fffbeb",
@@ -33,6 +37,10 @@ const config: Config = {
           800: "#92400e",
           900: "#78350f",
         },
+      },
+      borderRadius: {
+        "2xl": "1rem",
+        "3xl": "1.5rem",
       },
     },
   },
